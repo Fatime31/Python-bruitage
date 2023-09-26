@@ -35,6 +35,7 @@ def bruitMultiplicatif(niveauBruit,image):
     return image
 
 def filtrageConvolution(rayon, image):
+    image = np.double(image)
     for x in range(image.shape[0]):
         for y in range(image.shape[1]):
             voisinage = []
@@ -43,9 +44,11 @@ def filtrageConvolution(rayon, image):
                     if (x2 >= 0 and y2 >= 0 and x2 < image.shape[0] and y2 < image.shape[1]):
                         voisinage.append(image[x2,y2])
             image[x,y] = stat.mean(voisinage)
+    image = np.ubyte(image)
     return image
 
 def filtrageMedian(rayon, image):
+    image = np.double(image)
     for x in range(image.shape[0]):
         for y in range(image.shape[1]):
             voisinage = []
@@ -54,20 +57,47 @@ def filtrageMedian(rayon, image):
                     if (x2 >= 0 and y2 >= 0 and x2 < image.shape[0] and y2 < image.shape[1]):
                         voisinage.append(image[x2,y2])
             image[x,y] = stat.median(voisinage)
+    image = np.ubyte(image)
     return image
 
 #------------------------------------------------------------------------------
 
-img="Reference_pour_SNR/dcode-image.png"
-img2="Reference_pour_SNR/image1_reference.png"
+img="Reference_pour_SNR/image2_reference.png"
 
 image = io.imread(img)
+io.imsave("Reference_pour_SNR/img2Salt01.png",saltPepper(0.1, image))
+image = io.imread(img)
+io.imsave("Reference_pour_SNR/img2Add35.png",bruitAdditif(35,image))
+image = io.imread(img)
+io.imsave("Reference_pour_SNR/img2Mult03.png",bruitMultiplicatif(0.3,image))
 
-#io.imshow(filtrageMedian(1,saltPepper(0.1, image)))
+img1="Reference_pour_SNR/img2Salt01.png"
+img2="Reference_pour_SNR/img2Add35.png"
+img3="Reference_pour_SNR/img2Mult03.png"
 
-#io.imshow(bruitAdditif(20, image))
-#io.imshow(filtrageConvolution(1,bruitAdditif(20, image)))
+image1 = io.imread(img1)
+io.imsave("Reference_pour_SNR/img2Salt01_Conv.png",filtrageConvolution(1,image1))
+image1 = io.imread(img1)
+io.imsave("Reference_pour_SNR/img2Salt01_Conv2.png",filtrageConvolution(2,image1))
+image1 = io.imread(img1)
+io.imsave("Reference_pour_SNR/img2Salt01_Med.png",filtrageMedian(1,image1))
+image1 = io.imread(img1)
+io.imsave("Reference_pour_SNR/img2Salt01_Med2.png",filtrageMedian(2,image1))
 
-#io.imshow(bruitMultiplicatif(0.3, image))
+image2 = io.imread(img2)
+io.imsave("Reference_pour_SNR/img2Add35_Conv.png",filtrageConvolution(1,image2))
+image2 = io.imread(img2)
+io.imsave("Reference_pour_SNR/img2Add35_Conv2.png",filtrageConvolution(2,image2))
+image2 = io.imread(img2)
+io.imsave("Reference_pour_SNR/img2Add35_Med.png",filtrageMedian(1,image2))
+image2 = io.imread(img2)
+io.imsave("Reference_pour_SNR/img2Add35_Med2.png",filtrageMedian(2,image2))
 
-
+image3 = io.imread(img3)
+io.imsave("Reference_pour_SNR/img2Mult03_Conv.png",filtrageConvolution(1,image3))
+image3 = io.imread(img3)
+io.imsave("Reference_pour_SNR/img2Mult03_Conv2.png",filtrageConvolution(2,image3))
+image3 = io.imread(img3)
+io.imsave("Reference_pour_SNR/img2Mult03_Med.png",filtrageMedian(1,image3))
+image3 = io.imread(img3)
+io.imsave("Reference_pour_SNR/img2Mult03_Med2.png",filtrageMedian(2,image3))

@@ -28,7 +28,26 @@ def PBruit(imageRPath,imageBruitPath):
 def SNR (imagePath,imageBruit):
     return 10 * np.log10(PSignal(imageBruit)/PBruit(imagePath,imageBruit))
 
+#------------------------------------------------------------------------------
 
+print(SNR("Reference_pour_SNR/image2_reference.png","Reference_pour_SNR/img2Salt01.png"))
+print(SNR("Reference_pour_SNR/image2_reference.png","Reference_pour_SNR/img2Salt01_Conv.png"))
+print(SNR("Reference_pour_SNR/image2_reference.png","Reference_pour_SNR/img2Salt01_Conv2.png"))
+print(SNR("Reference_pour_SNR/image2_reference.png","Reference_pour_SNR/img2Salt01_Med.png"))
+print(SNR("Reference_pour_SNR/image2_reference.png","Reference_pour_SNR/img2Salt01_Med2.png"))
 
+print("---------------------------------------------------------------------")
 
-print(SNR("/Users/ndiayefatime/Documents/GitHub/R5.12/Reference_pour_SNR/image1_reference.png","/Users/ndiayefatime/Documents/GitHub/R5.12/Reference_pour_SNR/image1_bruitee_snr_10.8656.png"))
+print(SNR("Reference_pour_SNR/image2_reference.png","Reference_pour_SNR/img2Add35.png"))
+print(SNR("Reference_pour_SNR/image2_reference.png","Reference_pour_SNR/img2Add35_Conv.png"))
+print(SNR("Reference_pour_SNR/image2_reference.png","Reference_pour_SNR/img2Add35_Conv2.png"))
+print(SNR("Reference_pour_SNR/image2_reference.png","Reference_pour_SNR/img2Add35_Med.png"))
+print(SNR("Reference_pour_SNR/image2_reference.png","Reference_pour_SNR/img2Add35_Med2.png"))
+
+print("---------------------------------------------------------------------")
+
+print(SNR("Reference_pour_SNR/image2_reference.png","Reference_pour_SNR/img2Mult03.png"))
+print(SNR("Reference_pour_SNR/image2_reference.png","Reference_pour_SNR/img2Mult03_Conv.png"))
+print(SNR("Reference_pour_SNR/image2_reference.png","Reference_pour_SNR/img2Mult03_Conv2.png"))
+print(SNR("Reference_pour_SNR/image2_reference.png","Reference_pour_SNR/img2Mult03_Med.png"))
+print(SNR("Reference_pour_SNR/image2_reference.png","Reference_pour_SNR/img2Mult03_Med2.png"))
