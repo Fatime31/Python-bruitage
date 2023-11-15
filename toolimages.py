@@ -41,6 +41,30 @@ def filtrageConvolution(rayon, image):
     image = np.ubyte(image)
     return image
 
+def filtrageConvolutionPondere(rayon, image, ponderation):
+    image = np.double(image)
+    for x in range(image.shape[0]):
+        for y in range(image.shape[1]):
+            voisinage = []
+            for x2 in range(x-rayon,x+rayon+1,1):
+                for y2 in range(y-rayon,y+rayon+1,1):
+                    if (x2 >= 0 and y2 >= 0 and x2 < image.shape[0] and y2 < image.shape[1]):
+                        voisinage.append(image[x2,y2])
+                    else:
+                        voisinage.append(-1)
+            image[x,y] = moyenPondereMatriciel(voisinage,ponderation)
+    image = np.ubyte(image)
+    return image
+
+def moyenPondereMatriciel(matrice, ponderation):
+    total = 0 
+    pond = 0
+    for x in range(len(matrice)):
+        if (matrice[x] >= 0):
+            total += matrice[x]*ponderation[x]
+            pond += ponderation[x]
+    return total/pond
+
 def filtrageMedian(rayon, image):
     image = np.double(image)
     for x in range(image.shape[0]):

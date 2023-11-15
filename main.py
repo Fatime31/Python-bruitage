@@ -21,13 +21,19 @@ for img in images:
         mimage = io.imread(mimg)
         io.imsave(mimgname+"_Conv2.png",ti.filtrageConvolution(2,mimage))
         mimage = io.imread(mimg)
+        pond1 = [1,3,1,3,5,3,1,3,1]
+        io.imsave(mimgname+"_Pond.png",ti.filtrageConvolutionPondere(1,mimage,pond1))
+        mimage = io.imread(mimg)
+        pond2 = [1,3,5,3,1,3,5,8,5,3,5,8,13,8,5,3,5,8,5,3,1,3,5,3,1]
+        io.imsave(mimgname+"_Pond2.png",ti.filtrageConvolutionPondere(2,mimage,pond2))
+        mimage = io.imread(mimg)
         io.imsave(mimgname+"_Med.png",ti.filtrageMedian(1,mimage))
         mimage = io.imread(mimg)
         io.imsave(mimgname+"_Med2.png",ti.filtrageMedian(2,mimage))
         
 
 bruite = ["Salt01.png","Add35.png","Mult03.png"]
-debruite = ["_Conv.png","_Conv2.png","_Med.png","_Med2.png"]
+debruite = ["_Conv.png","_Conv2.png","_Pond.png","_Pond2.png","_Med.png","_Med2.png"]
 result = []
 for img in images:
     imgOriginal = io.imread(img)
@@ -45,6 +51,7 @@ for img in images:
 Datas = pd.DataFrame(data=result,
                      columns=['Image de depart','type de bruitage','SNR bruité',
                               'SNR debruité par Conv','SNR debruité par Conv 2',
+                              'SNR debruité par Pond','SNR debruité par Pond 2',
                               'SNR debruité par Med','SNR debruité par Med 2'])
 
 Datas.to_excel('./SNR_Tab.xlsx')
