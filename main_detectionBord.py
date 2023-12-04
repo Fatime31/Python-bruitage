@@ -10,6 +10,7 @@ from skimage import  io
 
 
 image = io.imread('Reference_pour_SNR/image1_reference.png')
+image2 = io.imread('Reference_pour_SNR/image2_reference.png')
 
 io.imshow(ti.detectionBord(image))
 io.show()
